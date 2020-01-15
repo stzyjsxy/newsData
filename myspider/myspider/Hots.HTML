@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+	<head>
+		<meta charset="utf-8" />
+		
+		<title>热点新闻列</title>
+		<link rel="icon" href="../static/img/Spider.ico" type="image/x-icon" />
+
+	</head>
+	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../static/css/index.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/left.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/top.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/content.css">
+	<!--<script src="static/js/index.js"></script>-->
+	
+	
+	<script>
+	$(function(){
+		//显示、隐藏左栏目--
+		$(".hide_show").click(function(){
+			$(".home_page").toggle(200);
+		}),
+		//菜单按钮的背景事件
+		$("#hide_show_bg").hover(
+			function(){//滑进
+				$(this).css("background-color","#e4e4e4");
+			},
+			function(){//滑出
+				$(this).css("background-color","white");
+		}),
+		
+		//查询焦点search   
+		$(".search").focus(),
+		
+		//热点新闻列表
+		$.getJSON("./tt.json",function(data){
+			var $jsontip = $(".content-right-content");
+			var strHtml = "";//存储数据的变量
+			$jsontip.empty();//清空内容
+			$.each(data,function(infoIndex,info){			
+				    strHtml += "<a href='" + info["url"] + "' class='haha'>" +info["title"]+"<br>"+"</a>"+"<hr>";
+
+				 
+			});
+			$jsontip.html(strHtml);//显示处理后的数据	
+			
+			//alert("123");
+		});
+		
+		
+	
+	});
+	</script>
+	<script>
+		window.onload = function(){
+			// mini登录窗口
+	   		var miniLogin = document.getElementById("mini-login");
+			var loginWindown = document.getElementById("login-windown");
+
+			miniLogin.onmouseover=function(){
+				loginWindown.style.display='block';
+			};
+			// miniLogin.onmouseout=function(){
+			// 	loginWindown.style.display='none';
+			// };
+
+            // 点击空白隐藏窗口
+			document.addEventListener("click",function(){
+        		loginWindown.style.display="none";
+			});
+    		loginWindown.addEventListener("click",function(event){
+				event=event||window.event;
+		  		event.stopPropagation();
+   		 	});
+
+		}
+	</script>
+
+	<body style="background-color: #fafafa">
+		<!--# 左边-->
+		<div id="home_page" class="home_page home_page-1" >
+				<!--首页-->
+				<div id="shouye" class="jq-dom-bkcolor">
+					<div>
+						<div>
+						<svg viewBox="0 0 24 24" fill="red" class="ssvg">
+							<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8"></path>
+						</svg>
+						</div>
+						<div class="jq-dom">
+							<a href="">首页</a>
+						</div>
+					</div>
+				</div>
+				<!--为您推荐-->
+				<div id="tuijian" class="jq-dom-bkcolor">
+					<div>
+						<div>
+							<svg viewBox="0 0 24 24" fill="#707070" class="ssvg">
+								<path d="M17.53 11.2c-.23-.3-.5-.56-.76-.82-.65-.6-1.4-1.03-2.03-1.66-1.46-1.46-1.78-3.87-.85-5.72-.9.23-1.75.75-2.45 1.32C8.9 6.4 7.9 10.07 9.1 13.22c.04.1.08.2.08.33 0 .22-.15.42-.35.5-.22.1-.46.04-.64-.12-.06-.05-.1-.1-.15-.17-1.1-1.43-1.28-3.48-.53-5.12C5.87 10 5 12.3 5.12
+								14.47c.04.5.1 1 .27 1.5.14.6.4 1.2.72 1.73 1.04 1.73 2.87 2.97 4.84 3.22 2.1.27 4.35-.12 5.96-1.6 1.8-1.66 2.45-4.3 1.5-6.6l-.13-.26c-.2-.45-.47-.87-.78-1.25zm-3.1 6.3c-.28.24-.73.5-1.08.6-1.1.38-2.2-.16-2.88-.82 1.2-.28 1.9-1.16 2.1-2.05.17-.8-.14-1.46-.27-2.23-.12-.74-.1-1
+									.37.2-2.06.15.38.35.76.58 1.06.76 1 1.95 1.44 2.2 2.8.04.14.06.28.06.43.03.82-.32 1.72-.92 2.26z" ></path>
+	  				</svg>
+						</div>
+						<div class="jq-dom">
+							<a href="">为您推荐</a>
+						</div>
+					</div>
+				</div>
+				<!--收藏夹-->
+				<div id="shoucang" class="jq-dom-bkcolor">
+					<div>
+						<div>
+						<svg viewBox="0 0 24 24" fill="#707070" class="ssvg">
+	  			<path d="M11.9 3.75c-4.55 0-8.23 3.7-8.23 8.25H.92l3.57 3.57.04.13 3.7-3.7H5.5c0-3.54 2.87-6.42 6.42-6.42 3.54 0 6.4 2.88 6.4 6.42s-2.86 6.42-6.4 6.42c-1.78 0-3.38-.73-4.54-1.9l-1.3 1.3c1.5 1.5 3.55 2.43 5.83 2.43 4.58 0 8.28-3.7 8.28-8.25 0-4.56-3.7-8.25-8.26-8.25zM11 8.33v4.6l3.92 2.3.66-1.1-3.2-1.9v-3.9H11z" class="style-scope yt-icon"></path>
+	  				</svg>
+						</div>
+						<div class="jq-dom">
+							<a href="">收藏夹</a>
+						</div>
+					</div>
+				</div>
+
+				<!--七七精选-->
+				<div class="choice" >
+					<div>七七新闻精选</div>
+				</div>
+				<!--精选内容-->
+				<div class="choice-content" >
+					<!--全球-->
+					<div id="globalq" class="choice-content-first-div" >
+						<div>
+							<div>
+							<img alt="music" src="../static/img/unnamed.jpg" >
+							</div>
+							<div class="jq-dom"><a href="" >全球</a></div>
+						</div>
+					</div>
+
+					<!--科学与技术-->
+					<div id="science" class="choice-content-first-div" >
+						<div>
+							<div>
+							<img alt="music" src="../static/img/unnamed (2).jpg" >
+							</div>
+							<div class="jq-dom"><a href="#keji" >科学与技术</a></div>
+						</div>
+					</div>
+					<!--体育-->
+					<div id="sports" class="choice-content-first-div" >
+						<div>
+							<div>
+							<img alt="music" src="../static/img/unnamed (3).jpg" >
+							</div>
+							<div class="jq-dom"><a href="#tiyu">体育</a></div>
+						</div>
+					</div>
+					<!--娱乐-->
+					<div id="enter" class="choice-content-first-div" >
+						<div>
+							<div>
+							<img alt="music" src="../static/img/unnamed (4).jpg" >
+							</div>
+							<div class="jq-dom"><a href="#yule" >娱乐</a></div>
+						</div>
+					</div>
+					<!--财经-->
+					<div id="finance" class="choice-content-first-div" >
+						<div>
+							<div>
+							<img alt="music" src="../static/img/unnamed (5).jpg" >
+							</div>
+							<div class="jq-dom"><a href="#caijing" >财经</a></div>
+						</div>
+					</div>
+					<!--发布新闻-->
+					<div id="release" class="choice-content-first-div" >
+						<div>
+							<div>
+							<svg viewBox="0 0 24 24" fill="#707070" >
+		  			<path d="M11.9 3.75c-4.55 0-8.23 3.7-8.23 8.25H.92l3.57 3.57.04.13 3.7-3.7H5.5c0-3.54 2.87-6.42 6.42-6.42 3.54 0 6.4 2.88 6.4 6.42s-2.86 6.42-6.4 6.42c-1.78 0-3.38-.73-4.54-1.9l-1.3 1.3c1.5 1.5 3.55 2.43 5.83 2.43 4.58 0 8.28-3.7 8.28-8.25 0-4.56-3.7-8.25-8.26-8.25zM11 8.33v4.6l3.92 2.3.66-1.1-3.2-1.9v-3.9H11z" class="style-scope yt-icon"></path>
+		  				</svg>
+							</div>
+							<div class="jq-dom" class="jq-dom-bkcolor"><a href="">发布新闻</a></div>
+						</div>
+					</div>
+				</div>
+				<!--版权-->
+				<div class="copyright">
+					<div></div>
+					<div>©2019七七新闻网 程鹏进</div>
+				</div>
+		</div>
+
+		<!--# 头部-->
+		<div class="top" >
+ 		<!--左侧功能和logo-->
+	 		<div>
+	 			<!--显示左栏目-->
+	 			<div id="hide_show" class="hide_show" >
+	 					<div id='hide_show_bg' >
+		  				<svg style="width:38px;height:38px;" viewBox="0 -8 24 38">
+		 						<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="#7b7777"></path>
+		 					</svg>
+	 					</div>
+				</div>
+				<!--logo-->
+				<div class="logo" >
+					<img onclick="index.html" src="../static/img/logo.png" alt="七七新闻网" >
+				</div>
+	 		</div>
+
+	 		<!--搜索栏和放大镜-->
+ 			<div>
+ 				<div>
+					<form>
+						<div>
+							<div>
+								<input id="search" class="search" name="search_query" type="text" placeholder="搜索" >
+							</div>
+						</div>
+						<!--放大镜-->
+						<button class="search-buttom" >
+							<div>
+								<div>
+									<svg viewBox="0 0 24 24" style=" width: 100%; height: 20px;">
+	  								<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3
+	  									5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49
+	  									 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14
+	  									 9.5 14z" fill="#7b7777">
+									 	</path>
+  									</svg>
+  								</div>
+  							</div>
+  						</button>
+					</form>
+				</div>
+ 			</div>
+
+ 			<!--上传和登录-->
+	 		<div>
+	 			<div class="top--right" >
+					<!--制作视频或发布帖子-->
+					<div class="top--right-1-4" >
+						<div style="width:24px;height: 24px;border: 0px solid red;float: left;">
+							<svg viewBox="0 0 24 24" >
+  							<path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z" fill="#7b7777"></path>
+  							</svg>
+  						</div>
+					</div>
+					<!--七七应用-->
+					<div class="top--right-1-4" >
+						<div style="width:24px;height: 24px;border: 0px solid red;float: left;">
+							<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" >
+  							<path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z" fill="#7b7777"></path>
+  							</svg>
+  						</div>
+					</div>
+					<!--消息-->
+					<div class="top--right-1-4" >
+						<div style="width:24px;height: 24px;border: 0px solid red;float: left;">
+							<svg viewBox="0 0 24 24" >
+  							<path d="M12.04 4C17 4 21 7.7 21 12.3c0 4.57-4 8.28-8.96 8.28-1.76 0-3.4-.47-4.8-1.28-.15-.1-.35-.1-.52-.04-1.58.68-2.8.88-3.45.93-.2 0-.34-.26-.22-.4.6-.9 1.08-1.8 1.43-2.5.1-.2.1-.46-.04-.65C3.58 15.4 3.1 13.9 3.1 12.3c0-4.6 4-8.3 8.94-8.3zm1.6 9.56v1.58c0 .17.22.25.34.13l3.43-3.34c.1-.07.1-.2 0-.27L14 8.32c-.12-.12-.33-.04-.33.13V10c0 .1-.07.18-.17.2-3.38.52-5.04 2.73-5.74 5.1-.06.2.2.34.32.2 1.3-1.42 3.05-2.1 5.4-2.13.1 0 .2.1.2.2z" fill="#7b7777"></path>
+  							</svg>
+  						</div>
+					</div>
+					<!--设置-->
+					<div class="top--right-1-4" >
+						<div style="width:24px;height: 24px;border: 0px solid red;float: left;">
+							<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" >
+  							<path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="#7b7777"></path>
+  							</svg>
+  						</div>
+					</div>
+					<!--登录-->
+					<div id="mini-login">
+						<div>
+							登录
+  						</div>
+					</div>
+				</div>
+ 			</div>
+			<!--登录窗口-->
+			<div id="login-windown" class="mini-login">
+
+				<form method="post" action="/myself">
+                        {% csrf_token %}
+					<!--admin-->
+					<div class="mini-login-ad">
+						<input name="user_name"  type="text" s-pellcheck="false" style="width:186px; height:24px;" placeholder="请输入用户名">
+                        <!--<span class="error_tip" style="font-size:8px">提示信息</span>-->
+
+					</div>
+					<!--passwd-->
+					<div class="mini-login-pwd">
+						<input name="pwd"  type="password" s-pellcheck="false" style="width:186px; height:24px;" placeholder="请输入密码">
+                        <!--<span class="error_tip" style="font-size:8px">提示信息</span>-->
+					</div>
+					<!--登录按钮 -->
+					<!--css加鼠标样式-->
+					<!--<div onclick="window.open('/');" >-->
+                    <div >
+
+						<!--<a href="" type="submit">登&nbsp;&nbsp;录</a>-->
+                        <input class="mini-login-login" style="width:88px;" type="submit" value="登&nbsp;&nbsp;录" name="">
+					</div>
+                    <!--注册按钮 -->
+					<!--css加鼠标样式-->
+					<div class="mini-login-register" style="width:88px;" onclick="window.open('/account/register');">
+						<a href="" >注&nbsp;&nbsp;册</a>
+                        <!--<input class="mini-login-register" style="width:88px;"  value="注&nbsp;&nbsp;册" name="">-->
+					</div>
+					<!--忘记密码-->
+					<div class="mini-login-forget" >
+						<input type="checkbox" name="un-login" style="float: left;"></span>
+						<label for="un-login" style="float: left;border:0px solid black;width:80px;height:30px;">
+							<a>十天内免登录</a>
+						</label>
+						<label for="un-login" style="float: left;margin-left:26px;border:0px solid black;width:60px;height:30px;">
+							<a>忘记密码?</a>
+						</label>
+					</div>
+					<div class="tip" >{{ errmsg }}</div>
+				</form>
+
+			</div>
+		</div>
+
+		<!--正文-->
+		<div id="zhengwen" class="content">
+			<!--要闻-->
+			<div id="yaowen" class="center-centre">
+				<!--要闻-->
+				<div class="top-news-title">
+					<div>
+						<div style="width: 40px;height:27px;font-size: 20px;">要闻</div>
+					</div>
+					<div>
+						<a id="keji" href="" style="color:#4285f4;text-decoration:none;">更多"要闻"内容</a>
+					</div>
+				</div>
+
+				<!--第1块新闻--科学与技术-->
+				<div class="frst-news">
+					<!--头-->
+					<div class="news-bigtitle">
+						<ul>
+							<li id="keji_title1" class= "keji_title1">
+								<a href="">科技</a>
+							</li>
+
+							<li id="keji_title2" class= "keji_title2">
+								<a href="">手机</a>
+							</li>
+
+						</ul>
+
+						<ul	>
+							<li >
+								<a href="" >智能</a>
+							</li>
+
+							<li >
+								<a href="" >区块链</a>
+							</li>
+
+							<li >
+								<a href="" >科学</a>
+							</li>
+						</ul>
+					</div>
+					<!--主要内容-->
+					<div class="news-main-content" >
+						<!--左-->
+						<div class="news-main-content-left" >
+							<div>
+								<a href="" >
+									<img src="http://cms-bucket.nosdn.127.net/2018/12/27/38001ef81a7d4fddb385f9b675bbb3dd.png?imageView&thumbnail=200y125&quality=85" alt="医疗健康领域谣言满天飞 这让权健一年狂赚200亿" style="width:200px;height:125px;border:0px solid blue;">
+								</a>
+								<h3>医疗健康领域谣言满天飞 这让权健一年狂赚200亿</h3>
+							</div>
+
+							<div>
+								<a href="" >
+									<img src="http://cms-bucket.nosdn.127.net/2018/12/27/dc08231e0a7b45f2ad2a2b86abe932f7.jpeg?imageView&thumbnail=185y116&quality=85" style="width:200px;height:125px;border:0px solid blue;">
+								</a>
+								<h3 >通信专家：中国5G综合实力最强是怎么来的</h3>
+							</div>
+						</div>
+						<!--中-->
+						<div class="news-main-content-center">
+							<div id="keji_connect1" class="keji_connect1" >
+								<ul>
+									{%for keji1 in keji1 %}
+									<li >
+										<a href="{{keji1.url}}" >
+										{{ keji1.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for keji27 in keji27 %}
+									<li >
+										<a href="{{keji27.url}}" >
+											{{ keji27.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for keji7 in keji7 %}
+									<li>
+										<a href="{{keji7.url}}" >
+											{{ keji7.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for keji812 in keji812 %}
+									<li >
+										<a href="{{keji812.url}}" >
+											{{ keji812.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for keji12 in keji12 %}
+									<li id="tiyu" >
+										<a href="{{keji12.url}}" >
+											{{ keji12.title }}
+										</a>
+									</li>
+									{%endfor%}
+								</ul>
+							</div>
+							<div id="keji_connect2" class="keji_connect2" >
+								<ul>
+									{%for keji13 in keji13 %}
+									<li >
+										<a href="{{keji13.url}}" >
+										{{ keji13.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for keji1318 in keji1318 %}
+									<li >
+										<a href="{{keji1318.url}}" >
+											{{ keji1318.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for keji19 in keji19 %}
+									<li>
+										<a href="{{keji19.url}}" >
+											{{ keji19.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for keji1923 in keji1923 %}
+									<li >
+										<a href="{{keji1923.url}}" >
+											{{ keji1923.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for keji24 in keji24 %}
+									<li id="tiyu" >
+										<a href="{{keji24.url}}" >
+											{{ keji24.title }}
+										</a>
+									</li>
+									{%endfor%}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--第2块新闻--体育-->
+				<div class="second-news" id="js_tiyu">
+					<!--头-->
+					<div id="tiyu_list" class="tiyu_list">
+						<ul	>
+							<li id="tiyu_title1" class="tiyu_title1">
+								<a href="#">体育</a>
+							</li>
+
+							<li id="tiyu_title2" class="tiyu_title2">
+								<a href="#">NBA</a>&nbsp/&nbsp
+
+								<a href="#">CBA</a>
+							</li>
+
+							<li id="tiyu_title3" class="tiyu_title3">
+								<a href="#">中超</a>&nbsp/&nbsp
+
+								<a href="#">国际</a>
+							</li>
+						</ul>
+
+						<ul	>
+							<li style="b1order-top:2px solid blue;float:left;width:50px;height:49px;font-size: 14px;line-height: 49px;text-align: center;">
+								<a href="" style="border:0px solid blue;font-size: 14px;text-decoration:none;color:#6B6B6B;">综合</a>
+							</li>
+
+							<li style="b1order-top:2px solid blue;float:left;width:50px;height:49px;font-size: 14px;line-height: 49px;text-align: center;">
+								<a href="" style="border:0px solid blue;font-size: 14px;text-decoration:none;color:#6B6B6B;">跑步</a>
+							</li>
+							<li style="b1order-top:2px solid blue;float:left;width:50px;height:49px;font-size: 14px;line-height: 49px;text-align: center;">
+								<a href="" style="border:0px solid blue;font-size: 14px;text-decoration:none;color:#6B6B6B;">策划</a>
+							</li>
+							<li style="b1order-top:2px solid blue;float:left;width:60px;height:49px;font-size: 14px;line-height: 49px;text-align: center;">
+								<a href="" style="border:0px solid blue;font-size: 14px;text-decoration:none;color:#6B6B6B;">竞彩预测</a>
+							</li>
+						</ul>
+
+					</div>
+					<!--主要内容-->
+					<div class="news-main-content" >
+						<!--左-->
+						<div class="news-main-content-left" >
+							<div>
+								<a href="">
+									<img src="http://cms-bucket.nosdn.127.net/2018/12/27/1c7fa816a00547be82c6c3a7a5a53ffd.png?imageView&thumbnail=200y125&quality=85" style="width:200px;height:125px;border:0px solid blue;">
+								</a>
+								<h3>替补上阵秒救主！请问谁不需要C罗？</h3>
+							</div>
+
+							<div>
+								<a href="">
+									<img src="http://cms-bucket.nosdn.127.net/2018/12/27/f2ec064495f746d6bbec1506f564b70d.jpeg?imageView&thumbnail=200y125&quality=85" style="width:200px;height:125px;border:0px solid blue;">
+								</a>
+								<h3>LBJ入每日观察 哈登小腿受伤出战成疑</h3>
+							</div>
+						</div>
+						<!--中-->
+						<div id="tiyu_list_con" class="news-main-content-center">
+							<!--体育列表-->
+							<div id="tiyu_connect1" class="tiyu_connect1" >
+								<ul>
+									{%for article1 in articles1 %}
+									<li >
+										<a href="{{article1.url}}" >
+										{{ article1.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article27 in articles27 %}
+									<li >
+										<a href="{{article27.url}}" >
+											{{ article27.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article7 in articles7 %}
+									<li>
+										<a href="{{article7.url}}" >
+											{{ article7.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article812 in articles812 %}
+									<li >
+										<a href="{{article812.url}}" >
+											{{ article812.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article12 in articles12 %}
+									<li id="yule" >
+										<a href="{{article12.url}}" >
+											{{ article12.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+
+								</ul>
+							</div>
+							<!--NBA列表-->
+							<div id="tiyu_connect2" class="tiyu_connect2" >
+								<ul>
+									{%for article101 in articles101 %}
+									<li >
+									<a href="{{article101.url}}" >
+									{{ article101.title }}
+									</a>
+									</li>
+									{%endfor%}
+
+									{%for articlea27 in articlesa27 %}
+									<li >
+										<a href="{{articlea27.url}}" >
+											{{ articlea27.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article108 in articles108 %}
+									<li>
+										<a href="{{article108.url}}" >
+											{{ article108.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article10812 in articles10812 %}
+									<li >
+										<a href="{{article10812.url}}" >
+											{{ article10812.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article1012 in articles1012 %}
+									<li id="yule" >
+										<a href="{{article1012.url}}" >
+											{{ article1012.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+
+								</ul>
+							</div>
+							<!--CBA列表-->
+							<div id="tiyu_connect3" class="tiyu_connect3" >
+								<ul>
+									{%for article101 in articles101 %}
+									<li >
+									<a href="{{article101.url}}" >
+									{{ article101.title }}
+									</a>
+									</li>
+									{%endfor%}
+
+									{%for articlea27 in articlesa27 %}
+									<li >
+										<a href="{{articlea27.url}}" >
+											{{ articlea27.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article108 in articles108 %}
+									<li>
+										<a href="{{article108.url}}" >
+											{{ article108.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article10812 in articles10812 %}
+									<li >
+										<a href="{{article10812.url}}" >
+											{{ article10812.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article1012 in articles1012 %}
+									<li id="yule" >
+										<a href="{{article1012.url}}" >
+											{{ article1012.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+
+								</ul>
+							</div>
+							<!--中超列表-->
+							<div id="tiyu_connect4" class="tiyu_connect4" >
+								<ul>
+									{%for article25 in articles25 %}
+									<li >
+									<a href="{{article25.url}}" >
+									{{ article25.title }}
+									</a>
+									</li>
+									{%endfor%}
+
+									{%for article2630 in articles2630 %}
+									<li >
+										<a href="{{article2630.url}}" >
+											{{ article2630.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article31 in articles31 %}
+									<li>
+										<a href="{{article31.url}}" >
+											{{ article31.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article3235 in articles3235 %}
+									<li >
+										<a href="{{article3235.url}}" >
+											{{ article3235.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article36 in articles36 %}
+									<li id="yule" >
+										<a href="{{article36.url}}" >
+											{{ article36.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+
+								</ul>
+							</div>
+							<!--国际列表-->
+							<div id="tiyu_connect5" class="tiyu_connect5" >
+								<ul>
+									{%for article25 in articles25 %}
+									<li >
+									<a href="{{article25.url}}" >
+									{{ article25.title }}
+									</a>
+									</li>
+									{%endfor%}
+
+									{%for article2630 in articles2630 %}
+									<li >
+										<a href="{{article2630.url}}" >
+											{{ article2630.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article31 in articles31 %}
+									<li>
+										<a href="{{article31.url}}" >
+											{{ article31.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article3235 in articles3235 %}
+									<li >
+										<a href="{{article3235.url}}" >
+											{{ article3235.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for article36 in articles36 %}
+									<li id="yule" >
+										<a href="{{article36.url}}" >
+											{{ article36.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--第3块新闻--娱乐-->
+				<div class="third-news">
+					<!--头-->
+					<div class="yule_list">
+						<ul	>
+							<li id="yule_title1" class="yule_title1">
+								<a href="">娱乐</a>
+							</li>
+
+							<li id="yule_title2" class="yule_title2">
+								<a href="">影视</a>&nbsp/&nbsp
+
+								<a href="">音乐</a>
+							</li>
+						</ul>
+
+						<ul	>
+							<li>
+								<a href="">明星热点</a>
+							</li>
+
+							<li>
+								<a href="">重磅八卦</a>
+							</li>
+						</ul>
+
+					</div>
+					<!--主要内容-->
+					<div class="news-main-content" >
+						<!--左-->
+						<div class="news-main-content-left" >
+							<div>
+								<a href="http://ent.163.com/19/0103/16/E4K1CP3E00038FO9.html">
+									<img src="http://cms-bucket.nosdn.127.net/2019/01/03/ba5cddb1257047749dec82dffc9483b3.jpeg?imageView&thumbnail=200y125&quality=85" style="width:200px;height:125px;border:0px solid blue;">
+								</a>
+								<h3>专访陈奕迅：当年参加选修是考唱功</h3>
+							</div>
+
+							<div style="border:0px solid red;width:200px;height:190px">
+								<a href="">
+									<img src="http://cms-bucket.nosdn.127.net/2019/01/03/c08d7634243a4b029950da0384a1c1f3.png?imageView&thumbnail=185y116&quality=85" style="width:200px;height:125px;border:0px solid blue;">
+								</a>
+								<h3>63岁刘晓庆深夜与友人KTV牵手共舞 魅力依旧</h3>
+							</div>
+						</div>
+						<!--中-->
+						<div class="news-main-content-center">
+							<div id="yule_connect1" style="margin-top:-9px;border:0px solid red;width:390px;height:395px;">
+								<ul>
+									{%for yule1 in yule1 %}
+									<li >
+									<a href="{{yule1.url}}" >
+									{{ yule1.title }}
+									</a>
+									</li>
+									{%endfor%}
+
+									{%for yule27 in yule27 %}
+									<li >
+										<a href="{{yule27.url}}" >
+											{{ yule27.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for yule7 in yule7 %}
+									<li>
+										<a href="{{yule7.url}}" >
+											{{ yule7.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for yule812 in yule812 %}
+									<li >
+										<a href="{{yule812.url}}" >
+											{{ yule812.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for yule12 in yule12 %}
+									<li id="caijing" >
+										<a href="{{yule12.url}}" >
+											{{ yule12.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+
+								</ul>
+							</div>
+							<!--yingshiyingyue-->
+							<div id="yule_connect2" class="yule_connect2" >
+								<ul>
+									{%for yingshiyingyue1 in yingshiyingyue1 %}
+									<li >
+									<a href="{{yingshiyingyue1.url}}" >
+									{{ yingshiyingyue1.title }}
+									</a>
+									</li>
+									{%endfor%}
+
+									{%for yingshiyingyue27 in yingshiyingyue27 %}
+									<li >
+										<a href="{{yingshiyingyue27.url}}" >
+											{{ yingshiyingyue27.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for yingshiyingyue7 in yingshiyingyue7 %}
+									<li>
+										<a href="{{yingshiyingyue7.url}}" >
+											{{ yingshiyingyue7.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for yingshiyingyue812 in yingshiyingyue812 %}
+									<li >
+										<a href="{{yingshiyingyue812.url}}" >
+											{{ yingshiyingyue812.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for yingshiyingyue12 in yingshiyingyue12 %}
+									<li id="caijing" >
+										<a href="{{yingshiyingyue12.url}}" >
+											{{ yingshiyingyue12.title }}
+										</a>
+									</li>
+									{%endfor%}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--第4块新闻--财经-->
+				<div class="fourth-news">
+					<!--头-->
+					<div class="caijing_list">
+						<ul	>
+							<li id="caijing_title1" class="caijing_title1">
+								<a href="" style="">财经</a>
+							</li>
+
+							<li id="caijing_title2" class="caijing_title2">
+								<a href="">股票</a>
+							</li>
+
+							<li id="caijing_title3" class="caijing_title3">
+								<a href="">商业</a>
+							</li>
+						</ul>
+						<ul	>
+							<li >
+								<a href="">理财</a>
+							</li>
+							<li >
+								<a href="">基金</a>
+							</li>
+						</ul>
+					</div>
+					<!--主要内容-->
+					<div class="news-main-content" >
+						<!--左-->
+						<div class="news-main-content-left" >
+							<div>
+								<a href="">
+									<img src="http://cms-bucket.nosdn.127.net/2018/12/28/e4c33764df02439e965a9d0ad3635e58.jpeg?imageView&thumbnail=200y125&quality=85" alt="报名开启！大咖带你遇见科技未来" style="width:200px;height:125px;border:0px solid blue;">
+								</a>
+								<h3>报名开启！大咖带你遇见科技未来</h3>
+							</div>
+
+							<div>
+								<a href="">
+									<img src="http://cms-bucket.nosdn.127.net/2019/01/03/71a763c1187547208e5cddf4cfefa92e.jpeg?imageView&thumbnail=200y125&quality=85" style="width:200px;height:125px;border:0px solid blue;">
+								</a>
+								<h3>泸指冲高回落收跌0.04% 军工股掀涨停潮</h3>
+							</div>
+						</div>
+						<!--中-->
+						<div class="news-main-content-center">
+							<!--财经-->
+							<div id="caijing_connect1" style="margin-top:-9px;border:0px solid red;width:390px;height:395px;">
+								<ul>
+									{%for caijing1 in caijing1 %}
+									<li >
+									<a href="{{caijing1.url}}" >
+									{{ caijing1.title }}
+									</a>
+									</li>
+									{%endfor%}
+
+									{%for caijing27 in caijing27 %}
+									<li >
+										<a href="{{caijing27.url}}" >
+											{{ caijing27.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for caijing7 in caijing7 %}
+									<li>
+										<a href="{{caijing7.url}}" >
+											{{ caijing7.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for caijing812 in caijing812 %}
+									<li >
+										<a href="{{caijing812.url}}" >
+											{{ caijing812.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for caijing12 in caijing12 %}
+									<li id="tiyu" >
+										<a href="{{caijing12.url}}" >
+											{{ caijing12.title }}
+										</a>
+									</li>
+									{%endfor%}
+								</ul>
+							</div>
+							<!--股票-->
+							<div id="caijing_connect2" class="caijing_connect2" >
+								<ul>
+									{%for gupiao1 in gupiao1 %}
+									<li >
+									<a href="{{gupiao1.url}}" >
+									{{ gupiao1.title }}
+									</a>
+									</li>
+									{%endfor%}
+
+									{%for gupiao27 in gupiao27 %}
+									<li >
+										<a href="{{gupiao27.url}}" >
+											{{ gupiao27.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for gupiao7 in gupiao7 %}
+									<li>
+										<a href="{{gupiao7.url}}" >
+											{{ gupiao7.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for gupiao812 in gupiao812 %}
+									<li >
+										<a href="{{gupiao812.url}}" >
+											{{ gupiao812.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for gupiao12 in gupiao12 %}
+									<li id="tiyu" >
+										<a href="{{gupiao12.url}}" >
+											{{ gupiao12.title }}
+										</a>
+									</li>
+									{%endfor%}
+								</ul>
+							</div>
+							<!--商业-->
+							<div id="caijing_connect3" class="caijing_connect3" >
+								<ul>
+									{%for shangye1 in shangye1 %}
+									<li >
+										<a href="{{shangye1.url}}" >
+											{{ shangye1.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for shangye27 in shangye27 %}
+									<li >
+										<a href="{{shangye27.url}}" >
+											{{ shangye27.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for shangye7 in shangye7 %}
+									<li>
+										<a href="{{shangye7.url}}" >
+											{{ shangye7.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for shangye812 in shangye812 %}
+									<li >
+										<a href="{{shangye812.url}}" >
+											{{ shangye812.title }}
+										</a>
+									</li>
+									{%endfor%}
+
+									{%for shangye12 in shangye12 %}
+									<li id="tiyu" >
+										<a href="{{shangye12.url}}" >
+											{{ shangye12.title }}
+										</a>
+									</li>
+									{%endfor%}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--新闻热点-->
+			<div id="redian" class="content-right" >
+				<!--头-->
+				<div class="content-right-title" >
+					<div>
+						<div>新闻热点</div>
+					</div>
+				</div>
+				<!--热点列表-->
+				<div class="content-right-content">
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
